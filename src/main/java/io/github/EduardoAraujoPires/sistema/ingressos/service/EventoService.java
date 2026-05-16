@@ -1,47 +1,68 @@
 package io.github.EduardoAraujoPires.sistema.ingressos.service;
 
-import io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoExpetion;
-import io.github.EduardoAraujoPires.sistema.ingressos.expetion.SemIngressoDisponivelExpetion;
-import io.github.EduardoAraujoPires.sistema.ingressos.model.Compra;
+import io.github.EduardoAraujoPires.sistema.ingressos.dto.EventoRequestDTO;
+import io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.Evento;
-import io.github.EduardoAraujoPires.sistema.ingressos.repository.CompraRepository;
 import io.github.EduardoAraujoPires.sistema.ingressos.repository.EventoRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class EventoService {
 
     private final EventoRepository eventoRepository;
-    private final CompraRepository compraRepository;
+
+    public List<Evento> findAll() {
+        return eventoRepository.findAll();
+    }
+
+    public Evento findByEvento(Long id) {
+        return eventoRepository.findById(id).orElseThrow(() -> new idNaoEncontradoExpetion("Id não encontrado"));
+    }
 
     @Transactional
-    public ResponseEntity<?>processaCompra(Long eventoId, Integer quantidade, String chaveIdepotente){
+    public Evento save(EventoRequestDTO dto) {
+         Evento evento = new Evento();
+         evento.setNome(dto.getNome());
+         evento.setPreco(dto.getPreco());
+         evento.setCapacidade(dto.getCapacidade());
+         evento.setIngressosDisponiveis(dto.getCapacidade());
 
-        System.out.println("Processando compra...");
-        Evento evento = (Evento) eventoRepository.findByIdWithLock(eventoId)
-                .orElseThrow(()-> new IdWithLockNaoEncontradoExpetion("Evento não encontrado"));
-
-        if (evento.getIngressosDisponiveis() < quantidade){
-            throw new SemIngressoDisponivelExpetion("Só temos " + evento.getIngressosDisponiveis() + " ingressos disponíveis.");
-        }
-
-        evento.setIngressosDisponiveis(evento.getIngressosDisponiveis() - quantidade);
-        eventoRepository.save(evento);
-
-        Compra compra = new Compra(eventoId, quantidade);
-        compra = compraRepository.save(compra);
-
-
-        return ResponseEntity.ok().body("Compra realizada com sucesso, Restante de ingressos: "+ evento.getIngressosDisponiveis());
-
-
-    }
-
-    public Evento save(Evento evento){
         return eventoRepository.save(evento);
     }
+
+    @Transactional
+    public Evento update(Long id, EventoRequestDTO dto) {
+        Evento eventoId = eventoRepository.findById(id).orElseThrow(() -> new idNaoEncontradoExpetion("Id não encontrado"));
+        if (id.equals(eventoId.getId())) {
+            eventoId.setNome(dto.getNome());
+            eventoId.setPreco(dto.getPreco());
+            eventoId.setCapacidade(dto.getCapacidade());
+
+            int novosIgressos = eventoId.getCapacidade() - eventoId.getIngressosDisponiveis();
+            eventoId.setIngressosDisponiveis(dto.getCapacidade() - novosIgressos);
+            return eventoRepository.save(eventoId);
+
+        }
+        return null;
+
+    }
+
+    @Transactional
+    public void deleteById(Long id){
+        eventoRepository.deleteById(id);
+    }
+
+    public List<Evento> findByIngressos(Integer quantide){
+        return eventoRepository.findByIngressosDisponiveisGreaterThan(quantide);
+    }
+
+    public List<Evento> findByNome(String nome){
+        return eventoRepository.findByNomeContainsIgnoreCase(nome);
+    }
+
 }

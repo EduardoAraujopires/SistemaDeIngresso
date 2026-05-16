@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -15,4 +16,7 @@ public interface EventoRepository extends JpaRepository<Evento, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT e FROM Evento e where e.id= :id")
     Optional<Evento> findByIdWithLock(@Param("id") Long id);
+
+    List<Evento> findByIngressosDisponiveisGreaterThan(Integer quantidade);
+    List<Evento> findByNomeContainsIgnoreCase(String nome);
 }
