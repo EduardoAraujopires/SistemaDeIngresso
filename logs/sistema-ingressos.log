@@ -171,7 +171,7 @@
         no key update of e1_0
 2026-05-15 12:18:08 - Erro ao processar a compra - Evento: 1, Chave: minha-chave-003
 2026-05-15 12:18:08 - Erro inesperado
-io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoExpetion: Evento não encontrado
+io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoException: Evento não encontrado
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.lambda$processaCompra$0(CompraService.java:39)
 	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.processaCompra(CompraService.java:39)
@@ -256,7 +256,7 @@ io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoE
         no key update of e1_0
 2026-05-15 12:21:17 - Erro ao processar a compra - Evento: 1, Chave: minha-chave-001
 2026-05-15 12:21:17 - Erro inesperado
-io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoExpetion: Evento não encontrado
+io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoException: Evento não encontrado
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.lambda$processaCompra$0(CompraService.java:39)
 	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.processaCompra(CompraService.java:39)
@@ -1108,7 +1108,7 @@ jakarta.validation.UnexpectedTypeException: HV000030: No validator could be foun
         no key update of e1_0
 2026-05-15 14:02:09 - Erro ao processar a compra - Evento: 1, Chave: minha-chave-001
 2026-05-15 14:02:09 - Erro inesperado
-io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoExpetion: Evento não encontrado
+io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoException: Evento não encontrado
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.lambda$processaCompra$0(CompraService.java:39)
 	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.processaCompra(CompraService.java:39)
@@ -2223,8 +2223,8 @@ org.postgresql.util.PSQLException: ERROR: null value in column "preco" of relati
         compra c1_0 
     where
         c1_0.id_compra=?
-2026-05-15 21:40:26 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion: Id não existe] with root cause
-io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion: Id não existe
+2026-05-15 21:40:26 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoException: Id não existe] with root cause
+io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoException: Id não existe
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.lambda$devolveCompra$0(CompraService.java:75)
 	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.devolveCompra(CompraService.java:75)
@@ -2451,8 +2451,8 @@ io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion:
         compra c1_0 
     where
         c1_0.id_compra=?
-2026-05-15 21:41:43 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion: Id não existe] with root cause
-io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion: Id não existe
+2026-05-15 21:41:43 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoException: Id não existe] with root cause
+io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoException: Id não existe
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.lambda$devolveCompra$0(CompraService.java:75)
 	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
 	at io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService.devolveCompra(CompraService.java:75)
@@ -3189,3 +3189,169 @@ io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion:
 2026-05-15 22:18:43 - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-05-15 22:18:43 - HikariPool-1 - Shutdown initiated...
 2026-05-15 22:18:43 - HikariPool-1 - Shutdown completed.
+2026-05-17 14:08:05 - Starting IngressosApplication using Java 25.0.1 with PID 3456 (C:\Spring_Boot Eduardo\Curso_SpringBoot\ingressos\target\classes started by eduardo in C:\Spring_Boot Eduardo\Curso_SpringBoot\ingressos)
+2026-05-17 14:08:05 - Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-17 14:08:05 - No active profile set, falling back to 1 default profile: "default"
+2026-05-17 14:08:06 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-17 14:08:06 - Finished Spring Data repository scanning in 56 ms. Found 2 JPA repository interfaces.
+2026-05-17 14:08:07 - Tomcat initialized with port 8080 (http)
+2026-05-17 14:08:07 - Starting service [Tomcat]
+2026-05-17 14:08:07 - Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-17 14:08:07 - Root WebApplicationContext: initialization completed in 1467 ms
+2026-05-17 14:08:08 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-17 14:08:08 - HikariPool-1 - Starting...
+2026-05-17 14:08:08 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3e4f2300
+2026-05-17 14:08:08 - HikariPool-1 - Start completed.
+2026-05-17 14:08:08 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-17 14:08:09 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17 14:08:09 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-17 14:08:10 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-17 14:08:10 - Tomcat started on port 8080 (http) with context path '/'
+2026-05-17 14:08:10 - Started IngressosApplication in 5.359 seconds (process running for 6.269)
+2026-05-17 14:08:31 - Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-17 14:08:31 - Graceful shutdown complete
+2026-05-17 14:08:31 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17 14:08:31 - HikariPool-1 - Shutdown initiated...
+2026-05-17 14:08:31 - HikariPool-1 - Shutdown completed.
+2026-05-17 14:45:32 - Starting IngressosApplication using Java 25.0.1 with PID 18876 (C:\Spring_Boot Eduardo\Curso_SpringBoot\ingressos\target\classes started by eduardo in C:\Spring_Boot Eduardo\Curso_SpringBoot\ingressos)
+2026-05-17 14:45:32 - Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-17 14:45:32 - No active profile set, falling back to 1 default profile: "default"
+2026-05-17 14:45:32 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-17 14:45:32 - Finished Spring Data repository scanning in 47 ms. Found 2 JPA repository interfaces.
+2026-05-17 14:45:33 - Tomcat initialized with port 8080 (http)
+2026-05-17 14:45:33 - Starting service [Tomcat]
+2026-05-17 14:45:33 - Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-17 14:45:33 - Root WebApplicationContext: initialization completed in 1176 ms
+2026-05-17 14:45:33 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-17 14:45:33 - HikariPool-1 - Starting...
+2026-05-17 14:45:34 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3e4f2300
+2026-05-17 14:45:34 - HikariPool-1 - Start completed.
+2026-05-17 14:45:34 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-17 14:45:34 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17 14:45:34 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-17 14:45:35 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-17 14:45:35 - Tomcat started on port 8080 (http) with context path '/'
+2026-05-17 14:45:35 - Started IngressosApplication in 4.346 seconds (process running for 4.778)
+2026-05-17 14:45:55 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-17 14:45:55 - Initializing Servlet 'dispatcherServlet'
+2026-05-17 14:45:55 - Completed initialization in 1 ms
+2026-05-17 14:45:55 - 
+    insert 
+    into
+        evento
+        (capacidade_evento, ingressos_disponiveis, nome_evento, preco) 
+    values
+        (?, ?, ?, ?)
+2026-05-17 14:46:25 - Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-17 14:46:25 - Graceful shutdown complete
+2026-05-17 14:46:25 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17 14:46:25 - HikariPool-1 - Shutdown initiated...
+2026-05-17 14:46:25 - HikariPool-1 - Shutdown completed.
+2026-05-17 14:52:29 - Starting IngressosApplication using Java 25.0.1 with PID 16096 (C:\Spring_Boot Eduardo\Curso_SpringBoot\ingressos\target\classes started by eduardo in C:\Spring_Boot Eduardo\Curso_SpringBoot\ingressos)
+2026-05-17 14:52:29 - Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-17 14:52:29 - No active profile set, falling back to 1 default profile: "default"
+2026-05-17 14:52:30 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-17 14:52:30 - Finished Spring Data repository scanning in 44 ms. Found 2 JPA repository interfaces.
+2026-05-17 14:52:30 - Tomcat initialized with port 8080 (http)
+2026-05-17 14:52:30 - Starting service [Tomcat]
+2026-05-17 14:52:30 - Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-17 14:52:30 - Root WebApplicationContext: initialization completed in 1123 ms
+2026-05-17 14:52:31 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-17 14:52:31 - HikariPool-1 - Starting...
+2026-05-17 14:52:31 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a709cc7
+2026-05-17 14:52:31 - HikariPool-1 - Start completed.
+2026-05-17 14:52:31 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-17 14:52:32 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17 14:52:32 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-17 14:52:32 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-17 14:52:33 - Tomcat started on port 8080 (http) with context path '/'
+2026-05-17 14:52:33 - Started IngressosApplication in 4.177 seconds (process running for 4.575)
+2026-05-17 14:53:01 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-17 14:53:01 - Initializing Servlet 'dispatcherServlet'
+2026-05-17 14:53:01 - Completed initialization in 1 ms
+2026-05-17 14:53:01 - 
+    insert 
+    into
+        evento
+        (capacidade_evento, ingressos_disponiveis, nome_evento, preco) 
+    values
+        (?, ?, ?, ?)
+2026-05-17 14:53:22 - Requisição recebida - Chave 2
+2026-05-17 14:53:22 -  Processando compra - Chave: minha-chave-002, Evento: 2, Qtd: 10
+2026-05-17 14:53:22 - Buscando chave com Luck - ID: 2
+2026-05-17 14:53:22 - 
+    select
+        e1_0.id_evento,
+        e1_0.capacidade_evento,
+        e1_0.ingressos_disponiveis,
+        e1_0.nome_evento,
+        e1_0.preco 
+    from
+        evento e1_0 
+    where
+        e1_0.id_evento=? 
+    for
+        no key update of e1_0
+2026-05-17 14:53:22 - Evento encotrado - Nome: Hopi Hary, Disponivel: 80
+2026-05-17 14:53:22 - 
+    insert 
+    into
+        compra
+        (data_de_compra, id_evento, quantidade_de_compra, status_da_compra) 
+    values
+        (?, ?, ?, ?)
+2026-05-17 14:53:22 - Compra realizada com sucesso, Restante de ingressos: 70
+2026-05-17 14:53:22 - 
+    update
+        evento 
+    set
+        capacidade_evento=?,
+        ingressos_disponiveis=?,
+        nome_evento=?,
+        preco=? 
+    where
+        id_evento=?
+2026-05-17 14:53:22 - Compra Realizada com Sucesso - ID: 7
+2026-05-17 14:53:29 - Requisição recebida - Chave 2
+2026-05-17 14:53:55 - Requisição recebida - Chave 2
+2026-05-17 14:54:29 - Requisição recebida - Chave 2
+2026-05-17 14:54:29 -  Processando compra - Chave: minha-chave-002, Evento: 2, Qtd: 10
+2026-05-17 14:54:29 - Buscando chave com Luck - ID: 2
+2026-05-17 14:54:29 - 
+    select
+        e1_0.id_evento,
+        e1_0.capacidade_evento,
+        e1_0.ingressos_disponiveis,
+        e1_0.nome_evento,
+        e1_0.preco 
+    from
+        evento e1_0 
+    where
+        e1_0.id_evento=? 
+    for
+        no key update of e1_0
+2026-05-17 14:54:29 - Evento encotrado - Nome: Hopi Hary, Disponivel: 70
+2026-05-17 14:54:29 - 
+    insert 
+    into
+        compra
+        (data_de_compra, id_evento, quantidade_de_compra, status_da_compra) 
+    values
+        (?, ?, ?, ?)
+2026-05-17 14:54:29 - Compra realizada com sucesso, Restante de ingressos: 60
+2026-05-17 14:54:29 - 
+    update
+        evento 
+    set
+        capacidade_evento=?,
+        ingressos_disponiveis=?,
+        nome_evento=?,
+        preco=? 
+    where
+        id_evento=?
+2026-05-17 14:54:29 - Compra Realizada com Sucesso - ID: 8
+2026-05-17 14:56:36 - Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-17 14:56:36 - Graceful shutdown complete
+2026-05-17 14:56:36 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17 14:56:36 - HikariPool-1 - Shutdown initiated...
+2026-05-17 14:56:36 - HikariPool-1 - Shutdown completed.

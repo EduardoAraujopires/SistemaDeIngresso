@@ -1,9 +1,9 @@
 package io.github.EduardoAraujoPires.sistema.ingressos.service;
 
 import io.github.EduardoAraujoPires.sistema.ingressos.dto.CompraRequestDTO;
-import io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoExpetion;
-import io.github.EduardoAraujoPires.sistema.ingressos.expetion.SemIngressoDisponivelExpetion;
-import io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion;
+import io.github.EduardoAraujoPires.sistema.ingressos.expetion.IdWithLockNaoEncontradoException;
+import io.github.EduardoAraujoPires.sistema.ingressos.expetion.EstoqueInsuficienteException;
+import io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoException;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.Compra;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.Evento;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.StatusCompra;
@@ -36,7 +36,7 @@ public class CompraService {
         try {
             log.debug("Buscando chave com Luck - ID: {}", dto.getEventoId());
         Evento evento = (Evento) eventoRepository.findByIdWithLock(dto.getEventoId())
-                .orElseThrow(() -> new IdWithLockNaoEncontradoExpetion("Evento não encontrado"));
+                .orElseThrow(() -> new IdWithLockNaoEncontradoException("Evento não encontrado"));
 
 
         log.debug("Evento encotrado - Nome: {}, Disponivel: {}"
@@ -47,7 +47,7 @@ public class CompraService {
                 log.warn("Estoque esgotado - Solicitado: {}, Disponíveis: {}",
                         dto.getQuantidade(), evento.getIngressosDisponiveis());
                 dto.setStatusCompra(StatusCompra.CANCELADA);
-                throw new SemIngressoDisponivelExpetion("Só temos " + evento.getIngressosDisponiveis() + " ingressos disponíveis.");
+                throw new EstoqueInsuficienteException("Só temos " + evento.getIngressosDisponiveis() + " ingressos disponíveis.");
             }
 
 
@@ -72,9 +72,9 @@ public class CompraService {
 
     @Transactional
     public void devolveCompra(Long id) {
-        Compra compra = compraRepository.findById(id).orElseThrow(() -> new idNaoEncontradoExpetion("Id não existe"));
+        Compra compra = compraRepository.findById(id).orElseThrow(() -> new idNaoEncontradoException("Id não existe"));
 
-        Evento evento = eventoRepository.findByIdWithLock(compra.getEventoId()).orElseThrow(() -> new IdWithLockNaoEncontradoExpetion("Nao encontrado!"));
+        Evento evento = eventoRepository.findByIdWithLock(compra.getEventoId()).orElseThrow(() -> new IdWithLockNaoEncontradoException("Nao encontrado!"));
 
         evento.setIngressosDisponiveis(
                 evento.getIngressosDisponiveis() + compra.getQuantidade()
@@ -90,12 +90,12 @@ public class CompraService {
     }
 
     public Compra findByCompraId(Long id){
-        return compraRepository.findById(id).orElseThrow(()-> new idNaoEncontradoExpetion("Id não encontrado!"));
+        return compraRepository.findById(id).orElseThrow(()-> new idNaoEncontradoException("Id não encontrado!"));
     }
 
     @Transactional
     public Compra update(CompraRequestDTO dto, Long id){
-        Compra compra = compraRepository.findById(id).orElseThrow(()-> new idNaoEncontradoExpetion("Id não encontrado!"));
+        Compra compra = compraRepository.findById(id).orElseThrow(()-> new idNaoEncontradoException("Id não encontrado!"));
          if(id.equals(compra.getId())){
              compra.setStatus(dto.getStatusCompra());
              compra.setQuantidade(dto.getQuantidade());

@@ -1,7 +1,7 @@
 package io.github.EduardoAraujoPires.sistema.ingressos.expetion;
 
-public class CompraJaRealizadaExpetion extends RuntimeException {
-    public CompraJaRealizadaExpetion(String message) {
+public class CompraExistenteException extends RuntimeException {
+    public CompraExistenteException(String message) {
         super(message);
     }
 }

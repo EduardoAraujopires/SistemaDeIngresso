@@ -1,7 +1,7 @@
 package io.github.EduardoAraujoPires.sistema.ingressos.expetion;
 
-public class ChaveIdempotenteDuplicadaExpetion extends RuntimeException {
-    public ChaveIdempotenteDuplicadaExpetion(String message) {
+public class ChaveIdempotenteDuplicadaException extends RuntimeException {
+    public ChaveIdempotenteDuplicadaException(String message) {
         super(message);
     }
 }

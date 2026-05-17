@@ -1,7 +1,7 @@
 package io.github.EduardoAraujoPires.sistema.ingressos.service;
 
 import io.github.EduardoAraujoPires.sistema.ingressos.dto.EventoRequestDTO;
-import io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoExpetion;
+import io.github.EduardoAraujoPires.sistema.ingressos.expetion.idNaoEncontradoException;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.Evento;
 import io.github.EduardoAraujoPires.sistema.ingressos.repository.EventoRepository;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class EventoService {
     }
 
     public Evento findByEvento(Long id) {
-        return eventoRepository.findById(id).orElseThrow(() -> new idNaoEncontradoExpetion("Id não encontrado"));
+        return eventoRepository.findById(id).orElseThrow(() -> new idNaoEncontradoException("Id não encontrado"));
     }
 
     @Transactional
@@ -37,7 +37,7 @@ public class EventoService {
 
     @Transactional
     public Evento update(Long id, EventoRequestDTO dto) {
-        Evento eventoId = eventoRepository.findById(id).orElseThrow(() -> new idNaoEncontradoExpetion("Id não encontrado"));
+        Evento eventoId = eventoRepository.findById(id).orElseThrow(() -> new idNaoEncontradoException("Id não encontrado"));
         if (id.equals(eventoId.getId())) {
             eventoId.setNome(dto.getNome());
             eventoId.setPreco(dto.getPreco());
