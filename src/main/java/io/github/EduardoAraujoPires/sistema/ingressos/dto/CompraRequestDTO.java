@@ -7,15 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class CompraRequestDTO {
 
     @NotNull(message = "O id do evento é obrigatório")
-    @Positive(message = "O id deve ser positivo")
-//    @JsonProperty(value = "evento_id", required = false)
-    private Long eventoId;
+    @JsonProperty(value = "eventoId", required = false)
+    private UUID eventoId;
 
     @NotNull(message = "Quantidade é obrigatório")
     @Min(value = 1, message = "Quantidade mínima é 1 ingresso")

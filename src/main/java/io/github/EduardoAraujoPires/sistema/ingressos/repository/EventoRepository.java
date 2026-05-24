@@ -9,13 +9,14 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
-public interface EventoRepository extends JpaRepository<Evento, Long> {
+public interface EventoRepository extends JpaRepository<Evento, UUID> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT e FROM Evento e where e.id= :id")
-    Optional<Evento> findByIdWithLock(@Param("id") Long id);
+    Optional<Evento> findByIdWithLock(@Param("id") UUID id);
 
     List<Evento> findByIngressosDisponiveisGreaterThan(Integer quantidade);
     List<Evento> findByNomeContainsIgnoreCase(String nome);

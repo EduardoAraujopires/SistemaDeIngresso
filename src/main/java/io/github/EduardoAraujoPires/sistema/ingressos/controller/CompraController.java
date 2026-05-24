@@ -18,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/compras")
@@ -40,9 +42,11 @@ public class CompraController {
         }
 
             Compra compra = compraService.processaCompra(dto, chaveIdempotente);
-            Evento evento = eventoService.findByEvento(dto.getEventoId());
+          Evento evento = eventoService.findByEvento(dto.getEventoId());
 
             CompraResponseDTO compraResponseDTO = CompraResponseDTO.fromEntity(compra, evento.getPreco());
+
+
             log.info("Compra Realizada com Sucesso - ID: {}", compra.getId());
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(dto.getEventoId()).toUri();
@@ -56,22 +60,22 @@ public class CompraController {
     }
 
     @PostMapping("/devolver/{id}")
-    public void devolveIngresso(@PathVariable("id") Long id) {
+    public void devolveIngresso(@PathVariable("id") UUID id) {
         compraService.devolveCompra(id);
     }
 
     @GetMapping("/{id}")
-    public Compra findByCompraId(@PathVariable("id") Long id) {
+    public Compra findByCompraId(@PathVariable("id") UUID id) {
         return compraService.findByCompraId(id);
     }
 
     @PutMapping("/update/{id}")
-    public Compra update(@Valid @RequestBody CompraRequestDTO dto, @PathVariable("id") Long id) {
+    public Compra update(@Valid @RequestBody CompraRequestDTO dto, @PathVariable("id") UUID id) {
         return compraService.update(dto, id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") UUID id) {
         compraService.deleteById(id);
     }
 
@@ -81,7 +85,7 @@ public class CompraController {
     }
 
     @GetMapping("/buscarEventoId/{id}")
-    public List<Compra> findByEventoId(@PathVariable("id") Long id) {
+    public List<Compra> findByEventoId(@PathVariable("id") UUID id) {
         return compraService.findByEventoId(id);
     }
 }

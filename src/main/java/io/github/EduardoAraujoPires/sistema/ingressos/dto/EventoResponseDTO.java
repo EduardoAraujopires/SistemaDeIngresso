@@ -1,32 +1,29 @@
 package io.github.EduardoAraujoPires.sistema.ingressos.dto;
 
+import io.github.EduardoAraujoPires.sistema.ingressos.controller.mapper.EventoMapper;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.Evento;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class EventoResponseDTO {
-    private Long id;
+    private UUID id;
     private String nome;
     private Integer capacidade;
     private Integer ingressosDisponiveis;
     private BigDecimal preco;
     private Integer ingressosVendidos;
+    private static EventoMapper mapper;
 
-    public static EventoResponseDTO fromEntity(Evento evento){
-        EventoResponseDTO dto = new EventoResponseDTO();
-        dto.setId(evento.getId());
-        dto.setCapacidade(evento.getCapacidade());
-        dto.setNome(evento.getNome());
-        dto.setPreco(evento.getPreco());
-        dto.setIngressosDisponiveis(evento.getIngressosDisponiveis());
-        dto.setIngressosVendidos(evento.getIngressosDisponiveis());
+    public static EventoResponseDTO fromEntity(Evento evento) {
+        EventoResponseDTO dto =  mapper.toDTO(evento);
 
+        // Calcula ingressos vendidos
         dto.setIngressosVendidos(evento.getCapacidade() - evento.getIngressosDisponiveis());
         return dto;
     }

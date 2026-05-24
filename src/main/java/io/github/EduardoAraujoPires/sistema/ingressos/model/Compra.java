@@ -6,19 +6,21 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
 public class Compra {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_Compra", unique = true, nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "id_evento",  nullable = false)
-    private Long eventoId;
+    private UUID eventoId;
 
     @Column(name = "Quantidade_de_compra", nullable = false)
     private Integer quantidade;
@@ -30,11 +32,9 @@ public class Compra {
     @Column(name = "Status_da_compra")
     private StatusCompra status;
 
-    public Compra(Long eventoId, Integer quantidade) {
+    public Compra(UUID eventoId, Integer quantidade) {
         this.eventoId = eventoId;
         this.quantidade = quantidade;
     }
 
-    public Compra(){
-    }
 }

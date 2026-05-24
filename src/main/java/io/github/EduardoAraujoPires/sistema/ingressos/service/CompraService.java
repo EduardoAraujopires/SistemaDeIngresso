@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -71,7 +72,7 @@ public class CompraService {
     }
 
     @Transactional
-    public void devolveCompra(Long id) {
+    public void devolveCompra(UUID id) {
         Compra compra = compraRepository.findById(id).orElseThrow(() -> new idNaoEncontradoException("Id não existe"));
 
         Evento evento = eventoRepository.findByIdWithLock(compra.getEventoId()).orElseThrow(() -> new IdWithLockNaoEncontradoException("Nao encontrado!"));
@@ -89,12 +90,12 @@ public class CompraService {
         return compraRepository.findAll();
     }
 
-    public Compra findByCompraId(Long id){
+    public Compra findByCompraId(UUID id){
         return compraRepository.findById(id).orElseThrow(()-> new idNaoEncontradoException("Id não encontrado!"));
     }
 
     @Transactional
-    public Compra update(CompraRequestDTO dto, Long id){
+    public Compra update(CompraRequestDTO dto, UUID id){
         Compra compra = compraRepository.findById(id).orElseThrow(()-> new idNaoEncontradoException("Id não encontrado!"));
          if(id.equals(compra.getId())){
              compra.setStatus(dto.getStatusCompra());
@@ -106,7 +107,7 @@ public class CompraService {
     }
 
     @Transactional
-    public void deleteById(Long id){
+    public void deleteById(UUID id){
         Compra compra;
               compra = new Compra();
         compra.setStatus(StatusCompra.CANCELADA);
@@ -118,7 +119,7 @@ public class CompraService {
         return compraRepository.findByStatus(statusCompra);
     }
 
-    public List<Compra> findByEventoId(Long id){
+    public List<Compra> findByEventoId(UUID id){
         return compraRepository.findByEventoId(id);
     }
 }

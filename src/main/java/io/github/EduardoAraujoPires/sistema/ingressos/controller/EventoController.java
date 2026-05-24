@@ -1,5 +1,6 @@
 package io.github.EduardoAraujoPires.sistema.ingressos.controller;
 
+import io.github.EduardoAraujoPires.sistema.ingressos.controller.mapper.EventoMapper;
 import io.github.EduardoAraujoPires.sistema.ingressos.dto.EventoRequestDTO;
 import io.github.EduardoAraujoPires.sistema.ingressos.dto.EventoResponseDTO;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.Evento;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/eventos")
@@ -17,6 +19,7 @@ import java.util.List;
 public class EventoController {
 
     public final EventoService eventoService;
+    private final EventoMapper mapper;
 
     @GetMapping
     public List<Evento> findAll(){
@@ -24,20 +27,21 @@ public class EventoController {
     }
 
     @GetMapping("/id")
-    public Evento findByEventoId(@PathVariable("id") Long id){
+    public Evento findByEventoId(@PathVariable("id") UUID id){
         return eventoService.findByEvento(id);
     }
 
     @PutMapping("/update/{id}")
-    public Evento update(@Valid @RequestBody EventoRequestDTO dto,
-                         @PathVariable("id") Long id){
+    public ResponseEntity<?> update(@Valid @RequestBody EventoRequestDTO dto,
+                         @PathVariable("id") UUID id){
         return eventoService.update(id, dto);
     }
 
     @PostMapping
-    public Evento save(@Valid @RequestBody EventoRequestDTO dto){
-      return eventoService.save(dto);
-    }
+    public ResponseEntity<?> save(@Valid @RequestBody EventoRequestDTO dto){
+        return eventoService.save(dto);
+
+        }
 
     @GetMapping("/ingressos/{quantidade}")
     public List<Evento> findByIngressos(@PathVariable("quantidade") Integer quantidade){
@@ -50,7 +54,7 @@ public class EventoController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
+    public void delete(@PathVariable("id") UUID id){
         eventoService.deleteById(id);
     }
 }

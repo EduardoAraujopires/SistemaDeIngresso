@@ -3,16 +3,19 @@ package io.github.EduardoAraujoPires.sistema.ingressos.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Evento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_evento", nullable = false, unique = true)
-    private Long id;
+    private UUID id;
 
     @Column(name = "nome_evento", nullable = false)
     private String nome;
@@ -26,11 +29,4 @@ public class Evento {
     @Column(name = "preco", nullable = false)
     private BigDecimal preco;
 
-    public Evento(BigDecimal preco, String nome, Integer capacidade) {
-        this.preco = preco;
-        this.nome = nome;
-        this.capacidade = capacidade;
-    }
-    public Evento(){
-    }
 }
