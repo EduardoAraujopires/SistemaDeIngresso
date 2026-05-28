@@ -8,6 +8,11 @@ import io.github.EduardoAraujoPires.sistema.ingressos.model.StatusCompra;
 import io.github.EduardoAraujoPires.sistema.ingressos.service.CompraService;
 import io.github.EduardoAraujoPires.sistema.ingressos.service.EventoService;
 import io.github.EduardoAraujoPires.sistema.ingressos.service.IdempotencyService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -24,6 +29,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/compras")
 @AllArgsConstructor
+@Tag(name = "Compra")
 public class CompraController {
 
     private final CompraService compraService;
@@ -32,6 +38,12 @@ public class CompraController {
     private static final Logger log = LoggerFactory.getLogger(CompraController.class);
 
     @PostMapping
+    @Operation(summary = "Compra", description = "Realizar compra")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Compra realizada com sucesso."),
+            @ApiResponse(responseCode = "422", description = "Erro validação."),
+            @ApiResponse(responseCode = "404", description = "Compra não encontrada.")
+    })
     public ResponseEntity<?> compra(@Valid @RequestBody CompraRequestDTO dto,
                                     @RequestHeader(value = "Idempotency-Key",
                                             required = true) String chaveIdempotente) {

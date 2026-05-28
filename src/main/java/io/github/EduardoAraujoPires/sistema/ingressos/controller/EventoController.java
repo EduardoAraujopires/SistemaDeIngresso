@@ -5,6 +5,10 @@ import io.github.EduardoAraujoPires.sistema.ingressos.dto.EventoRequestDTO;
 import io.github.EduardoAraujoPires.sistema.ingressos.dto.EventoResponseDTO;
 import io.github.EduardoAraujoPires.sistema.ingressos.model.Evento;
 import io.github.EduardoAraujoPires.sistema.ingressos.service.EventoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/eventos")
 @AllArgsConstructor
+@Tag(name = "Evento")
 public class EventoController {
 
     public final EventoService eventoService;
@@ -38,6 +43,12 @@ public class EventoController {
     }
 
     @PostMapping
+    @Operation(summary = "Salvar", description = "Salvar Evento")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Evento Criado com sucesso."),
+            @ApiResponse(responseCode = "422", description = "Conflito,  erro de validação."),
+            @ApiResponse(responseCode = "404", description = "Erro ao cadastrar, Compra não realizada."),
+    })
     public ResponseEntity<?> save(@Valid @RequestBody EventoRequestDTO dto){
         return eventoService.save(dto);
 
