@@ -35,17 +35,17 @@ API REST para gestão de eventos e venda de ingressos online, com foco em resolv
 |--------|----------|-----------|
 | POST | `/api/eventos` | Criar evento |
 | GET | `/api/eventos` | Listar todos |
-| GET | `/api/eventos/disponiveis` | Eventos com ingressos |
+| GET | `/api/eventos/ingressos/{quantidade}` | Eventos com ingressos |
 | POST | `/api/compras` | Comprar ingresso (header `Idempotency-Key`) |
 
 ## 🧪 Como Executar
 
 ```bash
 # Clone o repositório
-git clone https://github.com/EduardoAraujopires/event-ticketing.git
+git clone https://github.com/EduardoAraujopires/SistemaDeIngresso
 
 # Entre na pasta
-cd event-ticketing
+cd SistemaDeIngresso
 
 # Execute com Maven
 mvn spring-boot:run
